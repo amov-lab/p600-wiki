@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 p600_document/build/
+p600_document/.vscode/
 develop-eggs/
 dist/
 downloads/
