@@ -45,7 +45,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'HOMER_wiki'
+project = u'p600_wiki'
 copyright = u'2020, amov-dev'
 author = u'amov-dev'
 
