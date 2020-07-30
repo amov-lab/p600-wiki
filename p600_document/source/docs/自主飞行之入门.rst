@@ -97,7 +97,7 @@ px4_command功能包是一个基于PX4开源固件及Mavros功能包的开源项
 飞机端图数传配置成无线STA模式
 """"""""""""""""""""""""""""""""
 
-.. image:: ../images/XBEE_WLAN_mode.png
+.. image:: ../images/Wifi_Air.png
 
 飞机端图数传在我们发货前也会默认进行配置为无线STA模式，并连接上地面端的wifi，并经过测试，
 通常您拿到手的图数传已经是配置好了。
