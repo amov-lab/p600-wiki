@@ -80,7 +80,9 @@ c. 室外测试
 4.	框选目标观测速度数据是否正常，正常则继续
 
 框选目标：
+
 .. image:: ../images/Outdoor_test4.png
+
 观察数据是否正常：
 .. image:: ../images/Outdoor_test3.png
 
