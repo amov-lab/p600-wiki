@@ -304,4 +304,106 @@ ping不通那么你需要打开 RM08K config tool CN V2.1.exe
 
 .. image:: ../images/WIFI_RM08K_set_success.png
 
+9.3 吊舱使用
+===================
+
+我们通过局域网，使TX2和自己的笔记本电脑连接同一个WiFi，查看TX2的IP地址，首先需要无限键鼠，
+HDMI转接线，显示器一台，4s电池，TX2供电线，吊舱供电电池3s。
+
+
+远程连接TX2
+--------------------------
+
+首先用4S电池，TX2供电线给TX2供电开机，插上HDMI到显示器上，无线键鼠插到tx2 USB接口上面。
+开机之后输入密码，账户名和密码是一致的，比如账户是nvidia，那么密码也是nvidia。
+登录进去连接到WiFi，确保nomachine软件是打开的（打开的话，在右上角会有显示nomachine的图标）。然后TX2
+连接WiFi，接着查看TX2当前的IP地址，打开一个终端（ Ctrl+Alt+t ），输入ifconfig，找到wanlx （ x，可
+能为0，可能为1 ），可以看到inet addr：xxx.xxx.xxx.xxx，这些xxx表示的就是IP地址，比如我显示的
+就是192.168.31.20。然后记住这个IP地址，HDMI线可以从tx2拔下来，无限键鼠可以拔掉，tx2两个
+USB 口一个口接吊舱的视频 USB 口，另一个接吊舱的串口转 TTL 接口。
+
+.. image:: ../images/dc_lj.JPG
+
+接下来，用自己的电脑，确保自己
+电脑已经安装了nomachine软件，自己电脑WiFi也连接上和TX2一样的WiFi，打开nomachine，新建一
+个连接，输入所要连接客户端的IP地址，我这里就是192.168.31.20。新建连接过程中保持默认参数。
+新建完成后，双击刚新建的连接，提示是否要连接，选择连接。输入相应的账户名和密码，回车就可
+以远程控制 tx2 了。
+
+打开NOMACHINA软件，点击 New新建
+
+.. image:: ../images/WIFI_nomachine_create_new.png
+
+Protrocol选择NX模式，然后输入TX2的IP地址192.168.1.84，Port默认4000
+
+.. image:: ../images/NoMachine1.png
+
+下一步，鉴定方式选择Password，下一步选择Do not use proxy，最后Done
+
+如下选择刚才配置的参数，点击连接
+
+.. image:: ../images/NoMachine2.png
+
+成功后点击YES
+
+输入TX2的用户名以及密码(默认amov) 然后一路OK即可进行访问。
+
+.. image:: ../images//NoMachine3.png
+
+
+.. image:: ../images/NoMachine4.png
+
+
+吊舱跟踪说明
+--------------------------
+
+吊舱的所有用到的源代码都在track_ws文件夹下面，分别是fv_tracking px4_command
+serial_ros，fv_tracking文件夹里面包含了吊舱的视觉框选实现，serial_ros该文件夹包含了视觉框选的结
+那反馈到吊舱imu，并对吊舱进行相应的控制跟踪，px4_command该文件包含了由吊舱控制的运动，
+已经视觉框选像素大小，对飞机进行相应的控制。（该吊舱的代码不建议和P200代码混用，如果要肯定
+现P200的功能，请使用P200的代码包），吊舱的源码都在track_ws下面，确保要source track_ws该文
+单的路径，可以在~/.bashrc查看是否source正确。
+
+吊舱跟踪使用过程
+--------------------------
+
+**编译源码**
+
+通过远程连接tx2进入到TX2中。打开一个终端输入ls /dev |grep ttyUSB该命令查看当前USB设备，如
+那有ttyUSB0，那无需修改任何，如果是ttyUSB1，那么你需要修改
+~/track_ws/src/serial_ros/src/serial_node.cpp中找到ser.setPort这行，把这里串口改为
+/dev/ttyUSB1。默认打开串口是ttyUSB0，如果你查看自己的USB设备是ttyUSB1，就需要在这里修改
+一下。保存之后需要编译，编译需要到~/track_ws/目录下面，执行命令catkin_make。第二个查看自
+己有没有视频设备，查看自己的/dev下面是否有/dev/videox （ x表示0或者1 ），如果/dev下面没
+有/dev/videox相关的设备，请重新启动一下吊舱供电，重新查看/dev应该会有/dev/videox。x为0就是
+默认，无需修改，如果x是1，那么需要修改~/track_ws/src/fv_tracking/nodes/web_cam.cpp。查找
+cv：：VideoCapture默认使用的是摄像头0，如果上面x为1，则这里摄像头选择也要改为1 .同理需要保存
+和编译，编译还是需要在~/track_ws/目录下面执行catkin_make进行编译。
+
+
+**启动吊舱脚本**
+
+1. 首先使用Nomachine连接TX2的远程桌面。
+
+.. image:: ../images/TX2_Remote.png
+
+2. 接着运行如下目录的脚本文件：
+/home/amov/track_ws/src/px4_command/sh/sh_for_P200/fly_tracking_test.sh
+
+.. image:: ../images/TX2_1.png
+
+3. 会运行五个终端，依次检查每个终端是否有报错，这里第二个终端报错（打不开视频）：
+
+.. image:: ../images/Track_Con1.png
+
+4. 请确保吊舱电源是否开启，并且吊舱的USB线插入TX2,通常在TX2上电后需要重启下吊舱，否者可能造成TX2连接不上吊舱，
+插拔吊舱电源重新上电
+
+5. 再次运行脚本,运行成功:
+
+.. image:: ../images/Track_Connect.png
+
+6. 框选一个物体，测试吊舱是否能够跟踪：
+
+.. image:: ../images/Track_Test.png
 
