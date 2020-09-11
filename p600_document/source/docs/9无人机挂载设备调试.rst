@@ -1,22 +1,27 @@
-.. 无人机挂载设备调试:
+.. 无人机挂载设备调试
 
 =====================================
-无人机挂载设备调试
+图传配置及吊舱的使用 
 =====================================
+.. 一级标题
 
 9.0 说明
-========
+==========
+.. 二级标题
 
 .. tip::
 
-    我们的数传设备有两种，一种是WIFI数传，一种是图数传，如果是WIFI数传请看9.1节，如果是图数传请看9.2节
+    我们的数传设备有两种，一种是WIFI数传，一种是图数传，如果是WIFI数传请看9.2节，如果是图数传请看9.1节
 
 9.1 图数传配置
 ===================
+.. 二级标题
 
 9.1.0 说明
 ---------------
-您购买收到的图数传地面端和图数传移动端，默认已经按照背面的IP配置连接成功，可以跳过9.1.1节和9.1.2节进行测试。
+.. 三级标题
+
+您购买收到的图数传地面端和图数传移动端(飞机端)，默认已经按照背面的IP配置连接成功，可以跳过9.1.1节和9.1.2节进行测试。
 
 如果意外更改或其他原因，导致图数传地面端和图数传移动端连接不成功，可以按步骤依次配置。
 
@@ -24,47 +29,63 @@
 
     图数传的配置工具请在百度网盘自主下载
     `网盘链接 <https://pan.baidu.com/s/1jmf89LwA5vBB8o1Pp69DnQ>`__
-    提取码: **1evo**
+    提取码: **1evo** 
 
 图数传模块：
+
 .. image:: ../images/WIFI_IMAGE_model.png
+    :width: 60%
+    :align: center 
 
 9.1.1 地面端图数传设置
 -----------------------
+.. 三级标题
 
 .. image:: ../images/wifi_land.JPG
+    :width: 60%
+    :align: center 
 
-我们发货前默认会将地面端配置为AP模式，其中地面端图数传会创建一个wifi热点，
+发货前我们默认会将地面端配置为AP模式，其中地面端图数传会创建一个wifi热点。
 通常我们配置的默认wifi名称为：amov-01,密码为：123456789 （此热点电脑搜索不到，仅图数传可搜索）
 
 
-- 硬件连接
+硬件连接
+^^^^^^^^^^^
+.. 四级标题
 
+使用网口转GH1.25 4P线连接地面端LAN口与电脑网口
 
-使用网口转GH1.25 4P连接地面端LAN口与电脑网口
+|LAN_To_4Pin|  |WIfi_Lan|
 
-.. image:: ../images/LAN_To_4Pin.JPG
+.. |LAN_To_4Pin| image:: ../images/LAN_To_4Pin.JPG
+    :width: 49% 
+.. |WIfi_Lan| image:: ../images/WIfi_Lan.png
+    :width: 49%
 
-.. image:: ../images/WIfi_Lan.png
+使用4s电池进行供电。使用XT30转GH1.25 4P线连接地面端图数传与4s电池。如下图所示。
 
-使用XT30转GH1.25 4P连接地面端与4s电池进行供电
+|XT30To4P|  |Wifi_Power|
 
-.. image:: ../images/XT30To4P.JPG
-
-.. image:: ../images/Wifi_Power.png
+.. |XT30To4P| image:: ../images/XT30To4P.JPG
+    :width: 49%
+.. |Wifi_Power| image:: ../images/Wifi_Power.png
+    :width: 49%
 
 整体接线如下：
 
 .. image:: ../images/Wifi_Connect.png
+    :width: 100%
 
 .. warning::
 
     请勿将电源线接入网口或串口，否者可能造成您的设备损坏。
 
 
--软件配置
+软件配置
+^^^^^^^^^^^^^
+.. 四级标题
 
-通电前将地面端图数传串口3上面的开关拨到左侧（AP）请勿随意拨动开关，可能造成配置混乱。
+通电前将地面端图数传UART3(串口3)上面的开关拨到左侧（AP模式）。请勿随意拨动开关，否则可能造成配置混乱。
 
 .. image:: ../images/Wifi_Ap.png
 
@@ -86,10 +107,9 @@
 
 2. 配置图数传串口
 
-图数传模块有三个串口，如果要使用这些串口，就需要在配置软件中进行配置
+图数传模块有三个串口，如果要使用这些串口，就需要在配置软件中进行配置。
 
-打开网盘中提供的配置软件（ZLVirCom5.42.exe）
-点击设备管理：
+打开网盘中提供的配置软件（ZLVirCom5.42.exe）。点击设备管理：
 
 .. image:: ../images/Wifi_VIr1.png
 
@@ -97,15 +117,15 @@
 
 .. image:: ../images/Wifi_Vir2.png
 
-这里我配置串口1为如下：
+这里对UART1(串口1)的配置如下图所示：
 
 .. image:: ../images/Wifi_Urt_Conf1.png
 
-串口2：
+UART2(串口2)：
 
 .. image:: ../images/Wifi_Urt_Conf2.png
 
-串口3：
+UART3(串口3)：
 
 .. image:: ../images/Wifi_Urt_Conf3.png
 
@@ -118,12 +138,14 @@
 根据图数传底下提供的IP,在浏览器地址栏输入该IP(一般地面端AP模式的IP均为192.168.1.100):
 
 .. image:: ../images/Wifi_Conf1.JPG
+    :width: 70%
+    :align: center
 
 进入配置网页进行登陆，用户名密码均为admin：
 
 .. image:: ../images/Wifi_Conf2.JPG
 
-登陆后可以看到当前模式为STA模式，点击Wireless:
+登陆后可以看到当前模式为AP模式。点击Wireless:
 
 .. image:: ../images/Wifi_Conf3.JPG
 
@@ -131,27 +153,30 @@
 
 .. image:: ../images/Wifi_Conf4.JPG
 
-之后点击Save保存
+之后点击Save保存。
 
 
-
-9.1.1 飞机端图数传设置
+9.1.2 飞机端图数传设置
 -----------------------
 
 .. image:: ../images/Wifi_Air.png
+    :width: 70%
+    :align: center
+飞机端图数传在我们发货前也会默认配置为无线STA模式，并且连接上地面端的wifi。
+通常您拿到手的图数传已经是配置好的。
 
-飞机端图数传在我们发货前也会默认进行配置为无线STA模式，并连接上地面端的wifi，并经过测试，
-通常您拿到手的图数传已经是配置好了。
-
-- 硬件连接
+硬件连接
+^^^^^^^^^^^
+.. 四级标题
 
 同地面端
 
 
-- 软件配置
+软件配置
+^^^^^^^^^^^
+.. 四级标题
 
-
-通电前将飞机端图数传串口3上面的开关拨到左侧（STA）。
+通电前将飞机端图数传UART3(串口3)上面的开关拨到右侧（STA）。
 
 .. image:: ../images/Wifi_Sta.JPG
 
@@ -161,7 +186,7 @@
 
 2. 配置图数传串口
 
-图数传模块有三个串口，如果要使用这些串口，就需要在配置软件中进行配置
+图数传模块有三个串口，如果要使用这些串口，就需要在配置软件中进行配置。
 
 .. image:: ../images/Wifi_Urt.JPG
 
@@ -174,15 +199,15 @@
 
 .. image:: ../images/Wifi_Vir2.png
 
-这里我配置串口1为如下：
+这里我配置UART1(串口1)为如下：
 
 .. image:: ../images/Wifi_Urt_Conf5.png
 
-串口2：
+UART2(串口2)：
 
 .. image:: ../images/Wifi_Urt_Conf6.png
 
-串口3：
+UART3(串口3)：
 
 .. image:: ../images/Wifi_Urt_Conf9.png
 
@@ -192,7 +217,8 @@
 
 3. 配置图数传WIFI
 
-根据图数传底下提供的IP,在浏览器地址栏输入该IP:
+根据图数传底下提供的IP，在浏览器地址栏输入该IP。当图数传在STA模式下，如果该设备上贴有数字xx，则该设备的IP为192.168.1.xx。
+例如，该设备贴有数字80，则该设备的IP为192.168.1.80。
 
 .. image:: ../images/Wifi_Sta_Ip.png
 
@@ -200,7 +226,7 @@
 
 .. image:: ../images/Wifi_Sta_Conf1.png
 
-登陆后可以看到当前模式为AP模式，点击Wireless:
+登陆后可以看到当前模式为STA模式，点击Wireless:
 
 .. image:: ../images/Wifi_Sta_Conf2.png
 
@@ -253,7 +279,7 @@ WiFi-LINK配置成无线网卡模式
 
 **路由器设置**
 
-如图为 无线WiFi路由器默认IP地址为192.168.10.1，
+如图为无线WiFi路由器，其默认IP地址为192.168.10.1，
 登录到此路由器的后台，用已连接此WiFi的手机或电脑
 登陆地址wifi.wavlink.com（默认密码为admin）。
 
