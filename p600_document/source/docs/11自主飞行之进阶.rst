@@ -32,7 +32,7 @@ b. 室内测试
 .. image:: ../images/TX2_Remote.png
 
 2. 接着运行如下目录的脚本文件：
-/home/amov/track_ws/src/px4_command/sh/sh_for_P200/fly_tracking_test.sh
+`/home/amov/track_ws/src/px4_command/sh/sh_for_P200/fly_tracking_test.sh`
 
 .. image:: ../images/TX2_1.png
 
@@ -40,7 +40,7 @@ b. 室内测试
 
 .. image:: ../images/Track_Con1.png
 
-4. 请确保吊舱电源是否开启，并且吊舱的USB线插入TX2,通常在TX2上电后需要重启下吊舱，否者可能造成TX2连接不上吊舱，
+4. 请确保吊舱电源是否开启，并且吊舱的USB线插入TX2。通常在TX2上电后需要重启下吊舱，否者可能造成TX2连接不上吊舱，
 按压吊舱电源键重启吊舱：
 
 .. image:: ../images/Track_Reboot.png
